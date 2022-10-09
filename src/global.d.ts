@@ -3,7 +3,7 @@
  */
 
 declare global {
-    // declare GLOBAL TYPES HERE
+  // declare GLOBAL TYPES HERE
 }
 
 export default global;
