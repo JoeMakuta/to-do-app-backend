@@ -1,10 +1,11 @@
 import * as dotenv from 'dotenv';
 import App from './app';
 import * as http from 'http';
+import Database from './config/database';
 
 dotenv.config();
 
-const app: App = new App();
+const app: App = new App(new Database(process.env.MONGO_URI));
 let server: http.Server;
 
 const serverListening = (): void => {
