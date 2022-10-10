@@ -8,13 +8,13 @@ const userSchema = new Schema<User>(
     username: {
       type: String,
       required: [true, 'Username required'],
+      unique: true,
       max: [30, 'Only 30 characters are supported'],
       trim: true,
     },
     email: {
       type: String,
       required: true,
-      min: [7, 'Password must contains more that 7 characters'],
       unique: true,
       lowercase: true,
       trim: true,
@@ -27,6 +27,7 @@ const userSchema = new Schema<User>(
     bio: String,
     password: {
       type: String,
+      min: [7, 'Password must contains more that 7 characters'],
       required: true,
     },
   },

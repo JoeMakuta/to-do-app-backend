@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as http from 'http';
 import helmet from 'helmet';
+import * as createError from 'http-errors'
 import * as cors from 'cors';
 import * as dotenv from 'dotenv';
 import httstatusCode from 'http-status-codes';
@@ -18,6 +19,7 @@ export default class App {
     this.connectDatabase()
     this.middleware();
     this.routes();
+    this.handleError()
   }
 
   private routes(): void {
@@ -27,6 +29,21 @@ export default class App {
 
   private connectDatabase(): void {
     connectDatabase(process.env.MONGODB_URI)
+  }
+
+  private handleError() : void {
+    this.express.use((req : express.Request, res : express.Response, next : express.NextFunction) => {
+      next(new createError.NotFound("Page Not Found"));
+    });
+
+    this.express.use((err: { status: number; message: string; } , req : express.Request, res : express.Response, next: express.NextFunction) => {
+      res.status(err.status || 500);
+      res.json({
+        message : err.message,
+        data : null,
+        success : false
+      });
+    });
   }
 
   private baseRoute = (req: express.Request, res: express.Response): void => {

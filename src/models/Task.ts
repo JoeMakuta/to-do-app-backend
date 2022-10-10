@@ -1,12 +1,15 @@
 import { Schema, model } from 'mongoose';
 import Task from '../types/Task';
-import STATUS from './Status';
+
+enum STATUS {
+  DONE = 'DONE',
+  IN_PROGRESS = 'IN_PROGRESS',
+}
 
 const taskSchema = new Schema<Task>({
   title: {
     type: String,
     require: true,
-    unique: true,
   },
   description: {
     type: String,
