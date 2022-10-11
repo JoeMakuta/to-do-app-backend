@@ -7,3 +7,8 @@ export const userRegisterSchema = joi.object({
   profileImage: joi.string(),
   bio: joi.string(),
 });
+
+export const userSinginSchema = joi.object({
+  email: joi.string().required().email(),
+  password: joi.string().required(),
+});
