@@ -13,15 +13,13 @@ const taskSchema = new Schema<Task>({
   },
   description: {
     type: String,
-    required: true,
   },
   dateOfCreation: {
-    type: Number,
-    required: true,
+    type: Date,
+    default: Date.now(),
   },
   dateOfCompletion: {
     type: Date,
-    required: true,
   },
   status: {
     type: String,
