@@ -34,6 +34,7 @@ export const signup = async (
       message: `Created successful`,
       data: savedUser,
       success: true,
+      error: null,
     });
   } catch (error) {
     if (error.isJoi) error.status = 422;
@@ -67,8 +68,9 @@ export const signin = async (
 
     res.status(httpStatusCode.OK).json({
       message: `Authentificated as ${result.email}`,
-      accessToken,
+      data: { accessToken },
       success: true,
+      error: null,
     });
   } catch (error) {
     if (error.isJoi) {

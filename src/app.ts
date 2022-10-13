@@ -7,7 +7,7 @@ import * as dotenv from 'dotenv';
 import httstatusCode from 'http-status-codes';
 import connectDatabase from './config/database';
 import * as userControllers from './controller/userControllers';
-import * as taskControllers from './controller/taskController'
+import * as taskControllers from './controller/taskController';
 dotenv.config();
 
 export default class App {
@@ -27,9 +27,9 @@ export default class App {
     this.express.get('/', this.baseRoute);
     this.express.post('/signup', userControllers.signup);
     this.express.post('/signin', userControllers.signin);
-    this.express.post('/createTask' , taskControllers.createTask)
-    this.express.put('/updateTask/:id' , taskControllers.updateTask)
-    this.express.delete('/deleteTask/:id' , taskControllers.deleteTask)
+    this.express.post('/createTask', taskControllers.createTask);
+    this.express.put('/updateTask/:id', taskControllers.updateTask);
+    this.express.delete('/deleteTask/:id', taskControllers.deleteTask);
   }
 
   private connectDatabase(): void {
@@ -59,6 +59,7 @@ export default class App {
           message: err.message,
           data: null,
           success: false,
+          error: err,
         });
       },
     );

@@ -22,6 +22,7 @@ export const createTask = async (
       message: 'Created successful',
       data: savedTask,
       success: true,
+      error: null,
     });
   } catch (error) {
     if (error.isJoi) error.status = 422;
@@ -35,19 +36,30 @@ export const updateTask = async (
   next: express.NextFunction,
 ): Promise<void> => {
   const id = req.params.id;
-  const updated = req.body;
+  const task: ITask = req.body;
 
   if (mongoose.isValidObjectId(id)) {
     try {
-      const updatedTask = await Task.findByIdAndUpdate(id, updated, {
-        new: true,
-      }).catch((error) => next(error));
+      const updatedTask = await Task.findByIdAndUpdate(
+        id,
+        {
+          title: task.title,
+          description: task.description,
+          dateOfCreation: task.dateOfCreation,
+          dateOfCompletion: task.dateOfCompletion,
+          status: task.status,
+        },
+        {
+          new: true,
+        },
+      ).catch((error) => next(error));
 
       if (updatedTask) {
         res.status(httpStatusCode.OK).json({
           message: 'Updated successful',
           data: updatedTask,
           success: true,
+          error: null,
         });
       } else {
         throw new createError.NotFound('Task not found');
@@ -77,6 +89,7 @@ export const deleteTask = async (
           message: '  Deleted successful',
           data: deletedTask,
           success: true,
+          error: null,
         });
       } else {
         throw new createError.NotFound('Task not found');
