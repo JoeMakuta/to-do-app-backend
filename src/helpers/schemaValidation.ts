@@ -12,3 +12,11 @@ export const userSinginSchema = joi.object({
   email: joi.string().required().email(),
   password: joi.string().required(),
 });
+
+export const createTaskSchema = joi.object({
+  title: joi.string().required(),
+  description: joi.string(),
+  dateOfCreation: joi.date(),
+  dateOfCompletion: joi.date(),
+  status: joi.string(),
+});

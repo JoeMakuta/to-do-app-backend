@@ -1,11 +1,9 @@
-import STATUS from '../models/Status';
-
 interface Task {
   title: string;
-  description: string;
-  dateOfCreation: number;
-  dateOfCompletion: Date;
-  status: STATUS;
+  description?: string;
+  dateOfCreation?: Date;
+  dateOfCompletion?: Date;
+  status?: string;
 }
 
 export default Task;
