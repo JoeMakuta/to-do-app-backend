@@ -23,7 +23,7 @@ jobs:
           node-version: '16.x'
       - run : yarn install
       - run : yarn build
-      - run : yarn start:dev
+      # - run : yarn start:dev
    
   deploy:
 
