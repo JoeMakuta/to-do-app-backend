@@ -4,7 +4,7 @@
   "description": "Advanced todo list project for a learning purpose",
   "main": "index.js",
   "scripts": {
-    "buid": "tsc",
+    "build": "tsc",
     "lint": "eslint src/**/*.ts",
     "lint-fix": "eslint . src/**/*.ts --fix",
     "prettier": "prettier --write src/**/*.ts",
