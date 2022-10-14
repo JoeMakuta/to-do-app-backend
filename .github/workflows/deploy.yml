@@ -5,18 +5,14 @@ on:
   push:
     branches: [ develop ]
 
-  pull_request:
-    branches: [ develop ]
-
 jobs:
 
   build:
-  
+
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-     
       - name: Setup node
         uses: actions/setup-node@v2
         with:
@@ -24,7 +20,7 @@ jobs:
       - run : yarn install
       - run : yarn build
       # - run : yarn start:dev
-   
+
   deploy:
 
     needs : build
