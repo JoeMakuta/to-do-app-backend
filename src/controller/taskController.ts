@@ -86,7 +86,7 @@ export const deleteTask = async (
 
       if (deletedTask) {
         res.status(httpStatusCode.OK).json({
-          message: '  Deleted successful',
+          message: 'Deleted successful',
           data: deletedTask,
           success: true,
           error: null,

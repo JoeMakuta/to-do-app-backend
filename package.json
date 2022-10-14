@@ -4,14 +4,15 @@
   "description": "Advanced todo list project for a learning purpose",
   "main": "index.js",
   "scripts": {
-    "buid": "tsc",
+    "build": "tsc",
     "lint": "eslint src/**/*.ts",
     "lint-fix": "eslint . src/**/*.ts --fix",
     "prettier": "prettier --write src/**/*.ts",
     "prepare": "husky install",
     "precommit": "yarn lint-fix && yarn prettier",
     "prepush": "yarn lint",
-    "start:dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts"
+    "start:dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
+    "deploy" : "heroku origin=main && heruko push origin main"
   },
   "author": "CRES-UJUZI",
   "license": "MIT",
