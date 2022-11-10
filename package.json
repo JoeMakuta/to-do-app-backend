@@ -12,7 +12,7 @@
     "precommit": "yarn lint-fix && yarn prettier",
     "prepush": "yarn lint",
     "start:dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
-    "deploy" : "heroku origin=main && heruko push origin main"
+    "deploy": "heroku origin=main && heruko push origin main"
   },
   "author": "CRES-UJUZI",
   "license": "MIT",

@@ -9,7 +9,7 @@ import * as mongoose from 'mongoose';
 export const createTask = async (
   req: express.Request,
   res: express.Response,
-  next: express.NextFunction,
+  next: express.NextFunction, 
 ): Promise<void> => {
   try {
     const result: ITask = await createTaskSchema.validateAsync(req.body);
@@ -101,3 +101,35 @@ export const deleteTask = async (
     next(new createError.BadRequest('Invalid ID'));
   }
 };
+
+export const getTasks = async (req , res) => {
+  try {
+      const task = await Task.findOne(req.body);
+      const data = task;
+      res.status(200).json({Task:data});
+  } catch (error) {
+      res.status(500).send("err");
+  }
+}
+
+export const getSingleTask = async (req, res) => {
+  Task.findById(req.params.taskId, (err, result) => {
+      if (err) {
+          res.status(500).json({
+              error: err.message
+          })
+      } else {
+          if (!result) {
+              res.status(409).json({
+                  message: "This task not existe"
+              }
+              );
+
+          } else {
+              res.status(200).json(
+                  result
+              )
+          }
+      }
+  })
+}

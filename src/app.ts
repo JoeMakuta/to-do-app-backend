@@ -30,6 +30,8 @@ export default class App {
     this.express.post('/createTask', taskControllers.createTask);
     this.express.put('/updateTask/:id', taskControllers.updateTask);
     this.express.delete('/deleteTask/:id', taskControllers.deleteTask);
+    this.express.get('/getTask', taskControllers.getTasks);
+    this.express.get('/getSingleTask/:id', taskControllers.getSingleTask);
   }
 
   private connectDatabase(): void {
