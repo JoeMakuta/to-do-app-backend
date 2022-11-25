@@ -102,94 +102,94 @@ export const deleteTask = async (
   }
 };
 
-export const getTasks = async (req , res) => {
-  try {
-      const task = await Task.findOne(req.body);
-      const data = task;
-      res.status(200).json({Task:data}).sort({
-        dateOfCreation: 'desc'
-    });
-  } catch (error) {
-      res.status(500).send("err");
-  }
-}
+// export const getTasks = async (req , res) => {
+//   try {
+//       const task = await Task.findOne(req.body);
+//       const data = task;
+//       res.status(200).json({Task:data}).sort({
+//         dateOfCreation: 'desc'
+//     });
+//   } catch (error) {
+//       res.status(500).send("err");
+//   }
+// }
 
-export const fetchTask = async (req , res) => {
-  const perPage = 10;
-  var page = req.params.page;
-  Task.find((err, tasks) => {
-      if (err) {
-          res.status(500).json({
-              error: err.message
-          });
-      } else {
-              res.status(200).json({
-                  task: tasks
-              }); 
-      }
-  }).limit(perPage)
-  .skip(perPage*page)
-  .populate({
-      path: 'tasks',
-      populate: [
-          {
-              path: 'task'
-          },
+// export const fetchTask = async (req , res) => {
+//   const perPage = 10;
+//   var page = req.params.page;
+//   Task.find((err, tasks) => {
+//       if (err) {
+//           res.status(500).json({
+//               error: err.message
+//           });
+//       } else {
+//               res.status(200).json({
+//                   task: tasks
+//               }); 
+//       }
+//   }).limit(perPage)
+//   .skip(perPage*page)
+//   .populate({
+//       path: 'tasks',
+//       populate: [
+//           {
+//               path: 'task'
+//           },
         
-      ]
-  }).sort({
-    dateOfCreation: 'desc'
-  });
-}
+//       ]
+//   }).sort({
+//     dateOfCreation: 'desc'
+//   });
+// }
 
 
-export const getSingleTask = async (req, res) => {
-  Task.findById(req.params.taskId, (err, result) => {
-      if (err) {
-          res.status(500).json({
-              error: err.message
-          })
-      } else {
-          if (!result) {
-              res.status(409).json({
-                  message: "This task not existe"
-              }
-              );
+// export const getSingleTask = async (req, res) => {
+//   Task.findById(req.params.taskId, (err, result) => {
+//       if (err) {
+//           res.status(500).json({
+//               error: err.message
+//           })
+//       } else {
+//           if (!result) {
+//               res.status(409).json({
+//                   message: "This task not existe"
+//               }
+//               );
 
-          } else {
-              res.status(200).json(
-                  result
-              )
-          }
-      }
-  })
-}
+//           } else {
+//               res.status(200).json(
+//                   result
+//               )
+//           }
+//       }
+//   })
+// }
 
 
-export const searchTasks = async (req, res) => {
-  const inCommingValue = req.body.value;
-  const perPage = 15;
-  const page = Number(req.params.page);
-  Task.find({ "title": { '$regex': inCommingValue.toUpperCase(), '$options': 'i' } }, (err, result) => {
-      if (err) {
-          res.status(500).json({
-              error: err
-          })
-      } else {
+// export const searchTasks = async (req, res) => {
+//   const inCommingValue = req.body.value;
+//   const perPage = 15;
+//   const page = Number(req.params.page);
+//   Task.find({ "title": { '$regex': inCommingValue.toUpperCase(), '$options': 'i' } }, (err, result) => {
+//       if (err) {
+//           res.status(500).json({
+//               error: err
+//           })
+//       } else {
         
-          res.status(200).json({
-              count: result.length,
-              page: page, 
-              tasks: result,
+//           res.status(200).json({
+//               count: result.length,
+//               page: page, 
+//               tasks: result,
                            
-          })
-      }
-  }).limit(perPage)
-  .skip(perPage*page)
-  .sort(
-      {
-        dateOfCompletion: 'desc'
-      }
-  )
-  .populate('status');
-}
+//           })
+//       }
+//   }).limit(perPage)
+//   .skip(perPage*page)
+//   .sort(
+//       {
+//         dateOfCompletion: 'desc'
+//       }
+//   )
+//   .populate('status');
+// }

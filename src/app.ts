@@ -30,10 +30,10 @@ export default class App {
     this.express.post('/createTask', taskControllers.createTask);
     this.express.put('/updateTask/:id', taskControllers.updateTask);
     this.express.delete('/deleteTask/:id', taskControllers.deleteTask);
-    this.express.get('/getTask', taskControllers.getTasks);
-    this.express.get('/fetchTask', taskControllers.fetchTask);
-    this.express.get('/getSingleTask/:id', taskControllers.getSingleTask);
-    this.express.post('/search/task/:page', taskControllers.searchTasks);
+    // this.express.get('/getTask', taskControllers.getTasks);
+    // this.express.get('/fetchTask', taskControllers.fetchTask);
+    // this.express.get('/getSingleTask/:id', taskControllers.getSingleTask);
+    // this.express.post('/search/task/:page', taskControllers.searchTasks);
   }
 
   private connectDatabase(): void {
